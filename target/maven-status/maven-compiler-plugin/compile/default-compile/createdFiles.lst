@@ -1,0 +1,4 @@
+com\gorbag\discos\controller\ListadoController.class
+com\gorbag\discos\DiscosApplication.class
+com\gorbag\discos\service\DiscoService.class
+com\gorbag\discos\domain\Disco.class

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/discos.css">
+
+        <title>Gorbagproduktions</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" th:href="@{/}">
+                <img src="img/logo.png" width="30" height="30" alt="" loading="lazy">
+                Gorbagproduktions
+            </a>
+            <form th:action="@{/buscar}" class="form-inline my-2 my-lg-0">
+                <input autofocus="autofocus" name="q" class="form-control mr-sm-2" type="search" th:placeholder="${param.q}" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </nav>
+
+        <div class="container mt-4 dis-destacados">
+            <div class="row">
+                <div class="col-md-12 text-right mb-4">
+                    <a th:href="@{/discos/crear}" class="btn btn-outline-success">Crear Disco</a>
+                </div>
+            </div>
+            <div class="row">
+                <div th:each="disco : ${discos}" class ="col-mid-3 mb-4 mr-2">
+                    <div class="card" style="width: 17rem;">
+                        <img th:src="${disco.imageUrl}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 th:text="${disco.nombre }" class="card-title"></h5>
+                            <p>
+                                <a th:href="@{/discosPorDistribuidor(distribuidorId=${disco.distribuidor.id})}" class="badge badge-warning" th:text="${disco.distribuidor.nombre}"></a> <h8>-</h8> <h7 th:text="${disco.fecha }" class="card-text"></h7>
+                            </p>
+                            <td>$<span th:text="${#numbers.formatDecimal(disco.precio, 1, 'POINT', 0, 'COMMA')}|" class="card-title"></span></td>
+                            <p th:text="${disco.descripcion}" class="card-text"></p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="#" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
